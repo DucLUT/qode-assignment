@@ -1,0 +1,4 @@
+client/
+.git/
+.vscode/
+**/.DS_Store

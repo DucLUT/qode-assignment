@@ -1,7 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
 import dotenv from "dotenv";
 
-dotenv.config({ path: '.env.local' });
+const envFilePath = process.env.NODE_ENV === 'production' ? '.env' : '.env.local';
+dotenv.config({ path: envFilePath });
 
 function requiredEnv(name: string): string {
   const value = process.env[name];
