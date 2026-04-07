@@ -26,19 +26,16 @@ export const uploadPhoto = async (req: Request, res: Response) => {
   try {
     const { caption, image } = req.body;
 
-    // Validate that the image exists and is a base64 string
     if (!image || typeof image !== 'string' || !image.startsWith('data:image')) {
       res.status(400).json({ error: 'No valid base64 image provided' });
       return;
     }
 
-    // Upload the base64 string directly to Cloudinary
     const uploadResult = await cloudinary.uploader.upload(image, {
       folder: 'qode-assignment',
       resource_type: 'image'
     });
 
-    // Save to your database
     const photo = await createPhoto(
       uploadResult.public_id,
       uploadResult.secure_url,
