@@ -8,7 +8,7 @@ interface Props {
 
 export default function PhotoGrid({ photos }: Props) {
   if (photos.length === 0) {
-    return <Empty description="No photos yet, upload one!" />;
+    return <Empty />;
   }
 
   return (

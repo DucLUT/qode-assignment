@@ -19,7 +19,7 @@ export default function PhotoCard({ photo }: Props) {
   return (
     <Card
       title={photo.caption || "No caption"}
-      style={{ marginBottom: 24 }}
+      className="mb-6"
       cover={
         <img
           src={getPhotoSrc(photo.url)}

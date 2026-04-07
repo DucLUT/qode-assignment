@@ -10,7 +10,9 @@ type UploadPhotoPayload = {
 
 export const fetchPhotos = async (): Promise<Photo[]> => {
   const res = await fetch(`${BASE_URL}/api/photos`);
-  if (!res.ok) throw new Error('Failed to fetch photos');
+  if (!res.ok) {
+    throw new Error(`Failed to fetch photos (${res.status} ${res.statusText})`);
+  }
   return res.json();
 };
 
@@ -21,7 +23,9 @@ export const uploadPhoto = async (data: UploadPhotoPayload): Promise<Photo> => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   });
-  if (!res.ok) throw new Error('Failed to upload photo');
+  if (!res.ok) {
+    throw new Error(`Failed to upload photo (${res.status} ${res.statusText})`);
+  }
   return res.json();
 };
 
@@ -32,6 +36,8 @@ export const addComment = async (photoId: number, content: string) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ photo_id: photoId, content }),
   });
-  if (!res.ok) throw new Error('Failed to add comment');
+  if (!res.ok) {
+    throw new Error(`Failed to add comment (${res.status} ${res.statusText})`);
+  }
   return res.json();
 };
